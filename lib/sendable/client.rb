@@ -24,7 +24,7 @@ module Sendable
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.body = JSON.dump(params)
+      request.body = params.respond_to?(:to_json) ? params.to_json : JSON.dump(params)
       response = http.request(request)
 
       JSON.parse(response.body)
@@ -42,7 +42,7 @@ module Sendable
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.body = JSON.dump(params)
+      request.body = params.respond_to?(:to_json) ? params.to_json : JSON.dump(params)
       response = http.request(request)
 
       JSON.parse(response.body)
