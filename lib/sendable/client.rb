@@ -17,13 +17,14 @@ module Sendable
 
       headers = {
         'Authorization': "ApiKey #{api_key}",
+        'Content-Type' => 'application/json',
       }
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.set_form_data(params)
+      request.body = JSON.dump(params)
       response = http.request(request)
 
       JSON.parse(response.body)
@@ -34,13 +35,14 @@ module Sendable
 
       headers = {
         'Authorization': "ApiKey #{api_key}",
+        'Content-Type' => 'application/json',
       }
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.set_form_data(params)
+      request.body = JSON.dump(params)
       response = http.request(request)
 
       JSON.parse(response.body)
