@@ -24,7 +24,6 @@ Or install it yourself as:
 
 ```ruby
 Sendable.config do |config|
-  config.project_id = 'YOUR PROJECT ID'
   config.api_key = 'YOUR API KEY'
 end
 ```
@@ -36,13 +35,13 @@ end
 Returns the rendered HTML for your template.
 
 #### render arguments
-- **template_id** - *string* - Template ID being sent
+- **template** - *string* - Your email template's id
 - **params** - *hash* - Object containing the following keys
-  - **assigns** - *hash* - Any email data attributes that will be replaced in the `mustache` email template
+  - **data** - *hash* - Any email template data that will be replaced in the `mustache` email template
 
 ```ruby
 result = Sendable.client.render(1, {
-  assigns: {
+  data: {
     first_name: 'John',
     age: 28
   }
@@ -67,17 +66,17 @@ result = Sendable.client.render(1, {
 Sends the email using your configured SMTP mailer in Sendable.
 
 #### email arguments
-- **template_id** - *string* - Template ID being sent
+- **template** - *string* - Your email template's id
 - **params** - *hash* - Object containing the following keys
   - **to** - *string* - This is the recipient's email address
   - **from** - *string* - This is the sender's email address
-  - **assigns** - *hash* - Any email data attributes that will be replaced in the `mustache` email template
+  - **data** - *hash* - Any email data attributes that will be replaced in the `mustache` email template
 
 ```ruby
 result = Sendable.client.email(1, {
   to: 'john@doe.com',
   from: 'me@awesomesite.com',
-  assigns: {
+  data: {
     first_name: 'John',
     age: 28
   }
