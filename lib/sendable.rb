@@ -18,6 +18,6 @@ module Sendable
   end
 
   def self.client
-    @client ||= Client.new(config.project_id, config.api_key)
+    @client ||= Client.new(config.api_key)
   end
 end
