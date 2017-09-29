@@ -1,6 +1,6 @@
 # Sendable
 
-Ruby bindings for sending email via the Sendable REST API.
+Ruby library for sending email via the Sendable REST API.
 
 [sendable.io](https://sendable.io)
 
@@ -57,8 +57,8 @@ Sends the email using your configured SMTP mailer in Sendable.
 #### render arguments
 - **template_id** - *string* - Template ID being sent
 - **params** - *hash* - Object containing the following keys
-  - **to** - *hash* - This is the recipient's email address
-  - **from** - *hash* - This is the sender's email address
+  - **to** - *string* - This is the recipient's email address
+  - **from** - *string* - This is the sender's email address
   - **assigns** - *hash* - Any email data attributes that will be available as `mustache` variables
 
 ```ruby
