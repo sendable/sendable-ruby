@@ -37,13 +37,16 @@ Returns the rendered HTML for your template.
 
 #### render arguments
 - **template_id** - *string* - Template ID being sent
-- **:params** - *hash* - Any email data attributes that will be available as `mustache` variables
+- **params** - *hash* - Object containing the following keys
+  - **assigns** - *hash* - Any email data attributes that will be available as `mustache` variables
 
 ```ruby
 html = Sendable.client.render(1, {
-  name: 'John Doe',
-  email: 'john@doe.com',
-  age: 28
+  assigns: {
+    name: 'John Doe',
+    email: 'john@doe.com',
+    age: 28
+  }
 })
 ```
 
@@ -53,13 +56,19 @@ Sends the email using your configured SMTP mailer in Sendable.
 
 #### render arguments
 - **template_id** - *string* - Template ID being sent
-- **:params** - *hash* - Any email data attributes that will be available as `mustache` variables
+- **params** - *hash* - Object containing the following keys
+  - **to** - *hash* - This is the recipient's email address
+  - **from** - *hash* - This is the sender's email address
+  - **assigns** - *hash* - Any email data attributes that will be available as `mustache` variables
 
 ```ruby
 html = Sendable.client.email(1, {
-  name: 'John Doe',
-  email: 'john@doe.com',
-  age: 28
+  to: 'john@doe.com',
+  from: 'me@awesomesite.com',
+  assigns: {
+    first_name: 'John',
+    age: 28
+  }
 })
 ```
 
