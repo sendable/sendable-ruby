@@ -41,20 +41,32 @@ Returns the rendered HTML for your template.
   - **assigns** - *hash* - Any email data attributes that will be available as `mustache` variables
 
 ```ruby
-html = Sendable.client.render(1, {
+result = Sendable.client.render(1, {
   assigns: {
-    name: 'John Doe',
-    email: 'john@doe.com',
+    first_name: 'John',
     age: 28
   }
 })
+```
+
+#### render response
+```ruby
+{
+  success: true,
+  email: {
+    html: "<html><head></head><body><h1>Sample HTML</h1></body></html>",
+    plain: "Sample Plain Text",
+    subject: "Sample Subject",
+    preheader: "Sample Preheader"
+  }
+}
 ```
 
 ### Email
 
 Sends the email using your configured SMTP mailer in Sendable.
 
-#### render arguments
+#### email arguments
 - **template_id** - *string* - Template ID being sent
 - **params** - *hash* - Object containing the following keys
   - **to** - *string* - This is the recipient's email address
@@ -62,7 +74,7 @@ Sends the email using your configured SMTP mailer in Sendable.
   - **assigns** - *hash* - Any email data attributes that will be available as `mustache` variables
 
 ```ruby
-html = Sendable.client.email(1, {
+result = Sendable.client.email(1, {
   to: 'john@doe.com',
   from: 'me@awesomesite.com',
   assigns: {
@@ -71,6 +83,22 @@ html = Sendable.client.email(1, {
   }
 })
 ```
+
+#### email response
+```ruby
+{
+  success: true,
+  email: {
+    html: "<html><head></head><body><h1>Sample HTML</h1></body></html>",
+    plain: "Sample Plain Text",
+    subject: "Sample Subject",
+    preheader: "Sample Preheader"
+  },
+  delivery: {}
+}
+```
+
+The `delivery` key will include the response from your ESP.
 
 ## License
 
