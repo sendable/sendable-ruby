@@ -37,7 +37,7 @@ Returns the rendered HTML for your template.
 #### render arguments
 - **template** - *string* - Your email template's id
 - **params** - *hash* - Object containing the following keys
-  - **data** - *hash* - Any email template data that will be replaced in the `mustache` email template
+  - **data** - *hash* - Any email template data that will replace the email template variables
 
 ```ruby
 result = Sendable.client.render(1, {
@@ -70,7 +70,7 @@ Sends the email using your configured SMTP mailer in Sendable.
 - **params** - *hash* - Object containing the following keys
   - **to** - *string* - This is the recipient's email address
   - **from** - *string* - This is the sender's email address
-  - **data** - *hash* - Any email data attributes that will be replaced in the `mustache` email template
+  - **data** - *hash* - Any email template data that will replace the email template variables
 
 ```ruby
 result = Sendable.client.email(1, {
